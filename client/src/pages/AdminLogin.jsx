@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-
-const API_URL = import.meta.env.VITE_API_URL;
+import { loginAdmin } from "../api/adminApi"; // ✅ import the API function
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -15,10 +13,8 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post(
-        `${API_URL}/api/admin/login`,
-        { email, password }
-      );
+      // ✅ Use loginAdmin function from adminApi.js
+      const res = await loginAdmin(email, password);
 
       if (res.data.success) {
         localStorage.setItem("token", res.data.token);

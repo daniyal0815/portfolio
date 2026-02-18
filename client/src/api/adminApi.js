@@ -1,4 +1,4 @@
-import instance from "./axios"; // make sure path is correct
+import instance from "./axiosInstance";
 
 export const loginAdmin = async (email, password) => {
   return await instance.post("/api/admin/login", {
