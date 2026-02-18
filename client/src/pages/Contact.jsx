@@ -24,7 +24,7 @@ const Contact = () => {
     try {
       setLoading(true);
 
-      await instance.post("/contact", formData);
+      await instance.post("/api/contact", formData);
 
       setSuccess("✅ Message sent successfully!");
 
