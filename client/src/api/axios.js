@@ -1,7 +1,5 @@
-import axios from "axios";
+import instance from "./axiosInstance";
 
-const instance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-});
-
-export default instance;
+export const loginAdmin = async (email, password) => {
+  return await instance.post("/admin/login", { email, password });
+};
