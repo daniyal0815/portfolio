@@ -11,8 +11,6 @@ dotenv.config();
 const app = express();
 
 // Middleware
-import cors from "cors";
-
 app.use(
   cors({
     origin: "https://shaikhdaniyalraza.netlify.app",
@@ -21,7 +19,6 @@ app.use(
   })
 );
 
- // allow your frontend
 app.use(express.json());
 
 // Routes
@@ -29,9 +26,10 @@ app.use("/api/contact", contactRoutes);
 app.use("/api/admin", adminRoutes);
 
 // MongoDB
-mongoose.connect(process.env.MONGO_URI)
+mongoose
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
-  .catch(err => console.error("DB Error:", err));
+  .catch((err) => console.error("DB Error:", err));
 
 // Server
 const PORT = process.env.PORT || 5000;
