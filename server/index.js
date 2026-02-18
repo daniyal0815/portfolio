@@ -11,7 +11,13 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors({ origin: "http://localhost:5173" })); // allow your frontend
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://shaikhdaniyalraza.netlify.app/"
+  ]
+}));
+ // allow your frontend
 app.use(express.json());
 
 // Routes
