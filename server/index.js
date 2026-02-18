@@ -11,12 +11,16 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://shaikhdaniyalraza.netlify.app/"
-  ]
-}));
+import cors from "cors";
+
+app.use(
+  cors({
+    origin: "https://shaikhdaniyalraza.netlify.app",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+
  // allow your frontend
 app.use(express.json());
 
