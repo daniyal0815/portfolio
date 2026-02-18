@@ -1,5 +1,5 @@
 import { useState } from "react";
-import api from "../api/axios";
+import instance from "../api/axiosInstance"; // ✅ fixed import
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -24,7 +24,7 @@ const Contact = () => {
     try {
       setLoading(true);
 
-      await api.post("/contact", formData);
+      await instance.post("/contact", formData);
 
       setSuccess("✅ Message sent successfully!");
 
