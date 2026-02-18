@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const AdminDashboard = () => {
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,28 +19,31 @@ const AdminDashboard = () => {
   const fetchMessages = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/contact",
+        `${API_URL}/api/contact`,
         { headers: { Authorization: token } }
       );
+
       setContacts(res.data.data);
-      setLoading(false);
     } catch (error) {
-      console.error(error);
+      console.error("Fetch error:", error);
+    } finally {
       setLoading(false);
     }
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this message?")) return;
+    if (!window.confirm("Are you sure you want to delete this message?"))
+      return;
 
     try {
       await axios.delete(
-        `http://localhost:5000/api/contact/${id}`,
+        `${API_URL}/api/contact/${id}`,
         { headers: { Authorization: token } }
       );
+
       setContacts((prev) => prev.filter((c) => c._id !== id));
     } catch (error) {
-      console.error("Delete failed", error);
+      console.error("Delete failed:", error);
     }
   };
 
@@ -46,7 +51,8 @@ const AdminDashboard = () => {
     fetchMessages();
   }, []);
 
-  if (loading) return <p className="text-center mt-10">Loading messages...</p>;
+  if (loading)
+    return <p className="text-center mt-10">Loading messages...</p>;
 
   return (
     <section className="min-h-screen bg-gray-100 p-6">
@@ -61,7 +67,9 @@ const AdminDashboard = () => {
       </div>
 
       <div className="bg-white p-4 rounded shadow mb-6">
-        <h2 className="text-lg font-semibold">Total Messages: {contacts.length}</h2>
+        <h2 className="text-lg font-semibold">
+          Total Messages: {contacts.length}
+        </h2>
       </div>
 
       <div className="max-w-5xl mx-auto space-y-4">
@@ -69,11 +77,18 @@ const AdminDashboard = () => {
           <p>No messages found.</p>
         ) : (
           contacts.map((contact) => (
-            <div key={contact._id} className="bg-white p-5 rounded-lg shadow">
+            <div
+              key={contact._id}
+              className="bg-white p-5 rounded-lg shadow"
+            >
               <div className="flex justify-between items-start">
                 <div>
-                  <h2 className="font-semibold text-lg">{contact.name}</h2>
-                  <p className="text-sm text-gray-500">{contact.email}</p>
+                  <h2 className="font-semibold text-lg">
+                    {contact.name}
+                  </h2>
+                  <p className="text-sm text-gray-500">
+                    {contact.email}
+                  </p>
                 </div>
 
                 <button

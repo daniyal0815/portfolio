@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,15 +16,13 @@ const AdminLogin = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/admin/login", // backend URL
+        `${API_URL}/api/admin/login`,
         { email, password }
       );
 
-      console.log("Login response:", res.data);
-
       if (res.data.success) {
         localStorage.setItem("token", res.data.token);
-        navigate("/admin"); // redirect to dashboard
+        navigate("/admin");
       } else {
         alert(res.data.message || "Invalid credentials");
       }
@@ -36,7 +36,10 @@ const AdminLogin = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <form onSubmit={handleLogin} className="bg-white p-8 rounded shadow-md w-full max-w-sm">
+      <form
+        onSubmit={handleLogin}
+        className="bg-white p-8 rounded shadow-md w-full max-w-sm"
+      >
         <h2 className="text-2xl font-bold mb-6 text-center">Admin Login</h2>
 
         <label className="block mb-2">Email</label>
