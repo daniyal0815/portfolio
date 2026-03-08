@@ -27,3 +27,6 @@ html {
   animation: scroll 25s linear infinite;
 }
 
+html {
+  scroll-behavior: smooth;
+}

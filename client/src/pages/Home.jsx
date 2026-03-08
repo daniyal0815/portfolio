@@ -52,17 +52,28 @@ const Home = () => {
 
         {/* Buttons */}
         <div className="flex flex-wrap gap-4 mt-10 justify-center">
-          <button className="bg-black dark:bg-white text-white dark:text-black px-6 py-3 rounded-full flex items-center gap-2 hover:opacity-90 transition">
+
+          <a
+            href="#contact"
+            className="bg-black dark:bg-white text-white dark:text-black px-6 py-3 rounded-full flex items-center gap-2 hover:opacity-90 transition">
             Get in touch →
-          </button>
+          </a>
 
-          <button className="border border-gray-300 dark:border-gray-700 px-6 py-3 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-            View projects →
-          </button>
+          <a
+            href="#projects"
+            className="border border-gray-300 dark:border-gray-700 px-6 py-3 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+          >
+            View Projects →
+          </a>
 
-          <button className="border border-gray-300 dark:border-gray-700 px-6 py-3 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+          <a
+            href="/Daniyal-Raza-CV.pdf.pdf"
+            download
+            className="border border-gray-300 dark:border-gray-700 px-6 py-3 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+          >
             Download CV ↓
-          </button>
+          </a>
+
         </div>
       </div>
     </section>

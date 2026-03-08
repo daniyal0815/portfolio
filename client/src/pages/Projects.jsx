@@ -1,28 +1,37 @@
 const projects = [
   {
-    title: "MERN E-Commerce Store",
+    title: "Titan Core E-Commerce Store",
     description:
       "A full-stack e-commerce platform with authentication, admin dashboard, Stripe payments, product management and order tracking.",
     image:
-      "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=1200",
+      "https://ik.imagekit.io/hpqi0fsjo/Titan-Core.jpg",
     tech: ["React", "Node.js", "Express", "MongoDB", "Stripe", "Tailwind"],
     link: "https://titancorefrontend.netlify.app/",
   },
   {
-    title: "AI Blog Platform",
+    title: "AI Fitness Tracker",
     description:
-      "A scalable blogging platform with JWT authentication, role-based access, rich text editor and RESTful APIs.",
+      "AI Fitness Tracker is a modern web application designed to help users monitor and improve their fitness journey using intelligent insights. The platform allows users to track workouts, monitor progress, and receive personalized fitness recommendations powered by AI.",
     image:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200",
+      "https://res.cloudinary.com/dbbe8vlaw/image/upload/v1772997435/Fit-Track_wuwowv.jpg",
     tech: ["React", "Express", "MongoDB", "JWT", "Cloudinary"],
-    link: "#",
+    link: "https://bhatta-fitness-tracker.vercel.app/",
+  },
+  {
+    title: "AI Resume Builder",
+    description:
+      "AI Resume Builder is a full-stack MERN application designed to help users create professional resumes effortlessly. The platform allows users to input their details, generate AI-enhanced content, and customize different sections such as personal information, experience, education, projects, and skills.",
+    image:
+      "https://ik.imagekit.io/hpqi0fsjo/Resume-Builder.jpg",
+    tech: ["React", "Express", "MongoDB", "JWT", "Cloudinary"],
+    link: "https://daniyal-resume-builder.netlify.app/",
   },
 ];
 
 const Projects = () => {
   return (
     <section
-      id="projects"
+      
       className="min-h-screen bg-white dark:bg-black text-black dark:text-white px-6 py-24"
     >
       <div className="max-w-6xl mx-auto">

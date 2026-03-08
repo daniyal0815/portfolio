@@ -1,5 +1,5 @@
 import { useState } from "react";
-import instance from "../api/axiosInstance"; // ✅ fixed import
+import instance from "../api/axiosInstance";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -59,7 +59,7 @@ const Contact = () => {
         </h1>
 
         <p className="text-center text-gray-600 dark:text-gray-400 mb-6">
-          Let’s build something great together 
+          Let’s build something great together
         </p>
 
         {success && (
