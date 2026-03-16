@@ -26,12 +26,21 @@ const projects = [
     tech: ["React", "Express", "MongoDB", "JWT", "Cloudinary"],
     link: "https://daniyal-resume-builder.netlify.app/",
   },
+  {
+    title: "Quick Chat App",
+    description:
+      "A full-stack real-time chat application built using the MERN stack (MongoDB, Express.js, React, Node.js) that allows users to communicate instantly through a modern and responsive interface. The app supports user authentication, real-time messaging, and online user status using Socket.io.",
+    image:
+      "https://ik.imagekit.io/hpqi0fsjo/chatapp.jpg",
+    tech: ["React", "Express", "MongoDB", "JWT", "Socket.io", "Cloudinary"],
+    link: "https://daniyalchatapp.netlify.app/",
+  },
 ];
 
 const Projects = () => {
   return (
     <section
-      
+
       className="min-h-screen bg-white dark:bg-black text-black dark:text-white px-6 py-24"
     >
       <div className="max-w-6xl mx-auto">
@@ -86,6 +95,8 @@ const Projects = () => {
                 {/* Button */}
                 <a
                   href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm font-medium hover:underline"
                 >
                   Preview →
