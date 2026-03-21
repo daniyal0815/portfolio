@@ -10,19 +10,45 @@ const Contact = () => {
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
 
+  // Handle input change
   const handleChange = (e) => {
+    setError("");
+    setSuccess("");
+
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
+  // Simple validation
+  const validate = () => {
+    if (formData.name.length < 2) {
+      return "Name must be at least 2 characters";
+    }
+    if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      return "Invalid email address";
+    }
+    if (formData.message.length < 5) {
+      return "Message must be at least 5 characters";
+    }
+    return null;
+  };
+
+  // Submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const validationError = validate();
+    if (validationError) {
+      return setError(validationError);
+    }
+
     try {
       setLoading(true);
+      setError("");
 
       await instance.post("/api/contact", formData);
 
@@ -34,10 +60,10 @@ const Contact = () => {
         message: "",
       });
 
-      setLoading(false);
     } catch (error) {
-      console.log(error);
-      alert("Something went wrong!");
+      console.error(error);
+      setError("❌ Something went wrong. Please try again.");
+    } finally {
       setLoading(false);
     }
   };
@@ -59,9 +85,10 @@ const Contact = () => {
         </h1>
 
         <p className="text-center text-gray-600 dark:text-gray-400 mb-6">
-          Let’s build something great together
+          Let’s build something great together 🚀
         </p>
 
+        {/* Success */}
         {success && (
           <p className="bg-green-100 dark:bg-green-900/40
                         text-green-600 dark:text-green-400
@@ -70,7 +97,18 @@ const Contact = () => {
           </p>
         )}
 
+        {/* Error */}
+        {error && (
+          <p className="bg-red-100 dark:bg-red-900/40
+                        text-red-600 dark:text-red-400
+                        text-sm text-center py-2 rounded mb-4">
+            {error}
+          </p>
+        )}
+
         <form onSubmit={handleSubmit} className="space-y-5">
+          
+          {/* Name */}
           <div>
             <label className="block text-sm mb-1 text-gray-700 dark:text-gray-300">
               Your Name
@@ -84,12 +122,12 @@ const Contact = () => {
               required
               className="w-full px-4 py-2 rounded-lg border
                          bg-white dark:bg-gray-800
-                         text-black dark:text-white
                          border-gray-300 dark:border-gray-700
                          focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
             />
           </div>
 
+          {/* Email */}
           <div>
             <label className="block text-sm mb-1 text-gray-700 dark:text-gray-300">
               Your Email
@@ -103,12 +141,12 @@ const Contact = () => {
               required
               className="w-full px-4 py-2 rounded-lg border
                          bg-white dark:bg-gray-800
-                         text-black dark:text-white
                          border-gray-300 dark:border-gray-700
                          focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
             />
           </div>
 
+          {/* Message */}
           <div>
             <label className="block text-sm mb-1 text-gray-700 dark:text-gray-300">
               Message
@@ -117,17 +155,23 @@ const Contact = () => {
             <textarea
               name="message"
               rows="5"
+              maxLength="1000"
               value={formData.message}
               onChange={handleChange}
               required
               className="w-full px-4 py-2 rounded-lg border resize-none
                          bg-white dark:bg-gray-800
-                         text-black dark:text-white
                          border-gray-300 dark:border-gray-700
                          focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
             />
+
+            {/* Character Counter */}
+            <p className="text-xs text-gray-400 mt-1 text-right">
+              {formData.message.length}/1000
+            </p>
           </div>
 
+          {/* Button */}
           <button
             type="submit"
             disabled={loading}
