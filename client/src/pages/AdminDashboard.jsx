@@ -27,9 +27,7 @@ const AdminDashboard = () => {
   const fetchMessages = async () => {
     try {
       const res = await axios.get(
-        `${API_URL}/api/contact?search=${search}&isRead=${
-          filter === "all" ? "" : filter === "read"
-        }`,
+        `${API_URL}/api/contact?search=${search}&isRead=${filter === "all" ? "" : filter}`,
         { headers }
       );
 
@@ -90,7 +88,7 @@ const AdminDashboard = () => {
 
   return (
     <section className="min-h-screen bg-gray-100 dark:bg-black p-6 text-black dark:text-white">
-      
+
       {/* HEADER */}
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Dashboard</h1>
@@ -158,7 +156,7 @@ const AdminDashboard = () => {
               className="bg-white dark:bg-zinc-900 p-5 rounded-xl shadow border dark:border-zinc-800"
             >
               <div className="flex justify-between">
-                
+
                 <div>
                   <h2 className="font-semibold text-lg">
                     {item.name}
@@ -169,7 +167,7 @@ const AdminDashboard = () => {
                 </div>
 
                 <div className="flex gap-2">
-                  
+
                   {!item.isRead && (
                     <button
                       onClick={() => markAsRead(item._id)}
@@ -196,11 +194,10 @@ const AdminDashboard = () => {
               {/* Status */}
               <div className="flex justify-between items-center mt-3">
                 <span
-                  className={`text-xs px-2 py-1 rounded ${
-                    item.isRead
+                  className={`text-xs px-2 py-1 rounded ${item.isRead
                       ? "bg-green-500 text-white"
                       : "bg-yellow-400 text-black"
-                  }`}
+                    }`}
                 >
                   {item.isRead ? "Read" : "Unread"}
                 </span>

@@ -68,7 +68,7 @@ router.get("/", authMiddleware, async (req, res) => {
     }
 
     // 📌 Filter by read/unread
-    if (isRead !== undefined) {
+    if (isRead === "true" || isRead === "false") {
       query.isRead = isRead === "true";
     }
 
